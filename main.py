@@ -103,58 +103,58 @@ elif selected_page == "Statistics":
 
 elif selected_page == "Comments":
     st.subheader("Sentimental Analysis")
-    df_analyse_sent = pd.read_csv("df_analyse_sent.csv")
-    df_analyse_sent['description'] = df_analyse_sent['description'].astype(str)
-    text = ""
-    for comment in df_analyse_sent.description : 
-        text += comment
+#     df_analyse_sent = pd.read_csv("df_analyse_sent.csv")
+#     df_analyse_sent['description'] = df_analyse_sent['description'].astype(str)
+#     text = ""
+#     for comment in df_analyse_sent.description : 
+#         text += comment
 
-    # Importer stopwords de la classe nltk.corpus
-    import nltk
-    from nltk.corpus import stopwords
+#     # Importer stopwords de la classe nltk.corpus
+#     import nltk
+#     from nltk.corpus import stopwords
     
-    # Initialiser la variable des mots vides
-    stop_words = set(stopwords.words('french'))
+#     # Initialiser la variable des mots vides
+#     stop_words = set(stopwords.words('french'))
 
-    #Importer les packages nécessaires
-    from wordcloud import WordCloud
+#     #Importer les packages nécessaires
+#     from wordcloud import WordCloud
 
 
-    #Importer les packages nécessaires
-    from PIL import Image
-    import numpy as np
+#     #Importer les packages nécessaires
+#     from PIL import Image
+#     import numpy as np
 
-    def plot_word_cloud(text, masque, background_color = "black") :
-    # Définir un masque
-        mask_coloring = np.array(Image.open(str(masque)))
+#     def plot_word_cloud(text, masque, background_color = "black") :
+#     # Définir un masque
+#         mask_coloring = np.array(Image.open(str(masque)))
 
-        # Définir le calque du nuage des mots
-        wc = WordCloud(background_color=background_color, max_words=1000, stopwords=stop_words, mask = mask_coloring,colormap='flag',max_font_size=50, random_state=42)
-        import matplotlib.pyplot as plt
-        # Générer et afficher le nuage de mots
-        plt.figure(figsize= (5,5))
-        wc.generate(text)
-        plt.imshow(wc)
-        plt.axis('off')
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
+#         # Définir le calque du nuage des mots
+#         wc = WordCloud(background_color=background_color, max_words=1000, stopwords=stop_words, mask = mask_coloring,colormap='flag',max_font_size=50, random_state=42)
+#         import matplotlib.pyplot as plt
+#         # Générer et afficher le nuage de mots
+#         plt.figure(figsize= (5,5))
+#         wc.generate(text)
+#         plt.imshow(wc)
+#         plt.axis('off')
+#         st.set_option('deprecation.showPyplotGlobalUse', False)
+#         st.pyplot()
+#         st.set_option('deprecation.showPyplotGlobalUse', False)
 
-    df_analyse_sent["sentiment"] = 0
-    df_analyse_sent.loc[df_analyse_sent["note"].isin([10,8,6]),'sentiment'] = 1
-    # print(df_analyse_sent.head())
-    df_analyse_sent=df_analyse_sent.drop('note',axis=1)
+#     df_analyse_sent["sentiment"] = 0
+#     df_analyse_sent.loc[df_analyse_sent["note"].isin([10,8,6]),'sentiment'] = 1
+#     # print(df_analyse_sent.head())
+#     df_analyse_sent=df_analyse_sent.drop('note',axis=1)
 
-    # # Définir les données positives et négatives de types string
-    df_pos = df_analyse_sent[df_analyse_sent.sentiment == 1]
-    df_neg = df_analyse_sent[df_analyse_sent.sentiment == 0]
+#     # # Définir les données positives et négatives de types string
+#     df_pos = df_analyse_sent[df_analyse_sent.sentiment == 1]
+#     df_neg = df_analyse_sent[df_analyse_sent.sentiment == 0]
 
-    # print(df_pos)
+#     # print(df_pos)
             
-    text_pos = ""
-    for e in df_pos.description : text_pos += e
-    text_neg = ""
-    for e in df_neg.description : text_neg += e
+#     text_pos = ""
+#     for e in df_pos.description : text_pos += e
+#     text_neg = ""
+#     for e in df_neg.description : text_neg += e
 
     # Tracer le nuage de mots
     sent = st.radio(
@@ -162,10 +162,12 @@ elif selected_page == "Comments":
         ("Positive comments", "Negative comments"))
     st.write(f"Here you can see the most recurent words in the {sent}!")
     if sent== "Positive comments":
-        plot_word_cloud(text_pos, "mrc.jpg", "white")
+        st.image(arc_pos.jpg)
+#         plot_word_cloud(text_pos, "mrc.jpg", "white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
     elif sent == "Negative comments":
-        plot_word_cloud(text_neg, "yat.jpg","white")
+        st.image(arc_pos.jpg)
+#         plot_word_cloud(text_neg, "yat.jpg","white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
