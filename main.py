@@ -16,15 +16,15 @@ selected_page = st.sidebar.selectbox("Select a page", page_options)
 if selected_page == "A little description...":
     st.title("A little Description...")
     st.write("Welcome to our application! We created this app based on a webscrapping we did on the Hotel.com Website! Hotel.com is a website that helps you search for the best hotels in the area that you want to stay in. After creating our dataframes, we did a clustering of prices and a Sentimental Analysis on the comments. The destination we chose is Paris!")
-    st.image('image\eff.jpg', width=500)
+    st.image('eff.jpg', width=500)
 elif selected_page == "Choose the Hotel":
-    st.image('image\yo.jpg', width=300)
+    st.image('yo.jpg', width=300)
     st.title("Choose your Hotel!")
 
     st.write("With this app, I'll help you find the best hotel for your stay!")
-    df = pd.read_csv("data\df_final_hotel.csv")
-    df_pandas = pd.read_csv("data\df_pandas.csv")
-    df_analyse_sent = pd.read_csv("data\df_analyse_sent.csv")
+    df = pd.read_csv("df_final_hotel.csv")
+    df_pandas = pd.read_csv("df_pandas.csv")
+    df_analyse_sent = pd.read_csv("df_analyse_sent.csv")
     if st.checkbox('Show raw data'):
         st.subheader('Raw data')
         st.write(df)
@@ -40,8 +40,8 @@ elif selected_page == "Choose the Hotel":
 elif selected_page == "Statistics":
     import plotly.express as px
     st.subheader('Distribution')
-    df_pandas = pd.read_csv("data\df_pandas.csv")
-    df = pd.read_csv("data\df_final_hotel.csv")
+    df_pandas = pd.read_csv("df_pandas.csv")
+    df = pd.read_csv("df_final_hotel.csv")
     graph = st.radio(
         'Distributions of each caracteristic',
         ("Prices", "Ratings"))
@@ -103,7 +103,7 @@ elif selected_page == "Statistics":
 
 elif selected_page == "Comments":
     st.subheader("Sentimental Analysis")
-    df_analyse_sent = pd.read_csv("data\df_analyse_sent.csv")
+    df_analyse_sent = pd.read_csv("df_analyse_sent.csv")
     df_analyse_sent['description'] = df_analyse_sent['description'].astype(str)
     text = ""
     for comment in df_analyse_sent.description : 
@@ -161,10 +161,10 @@ elif selected_page == "Comments":
         ("Positive comments", "Negative comments"))
     st.write(f"Here you can see the most recurent words in the {sent}!")
     if sent== "Positive comments":
-        plot_word_cloud(text_pos, "image\mrc.jpg", "white")
+        plot_word_cloud(text_pos, "mrc.jpg", "white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
     elif sent == "Negative comments":
-        plot_word_cloud(text_neg, "image\yat.jpg","white")
+        plot_word_cloud(text_neg, "yat.jpg","white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
