@@ -110,8 +110,9 @@ elif selected_page == "Comments":
         text += comment
 
     # Importer stopwords de la classe nltk.corpus
+    import nltk
     from nltk.corpus import stopwords
-
+    
     # Initialiser la variable des mots vides
     stop_words = set(stopwords.words('french'))
 
