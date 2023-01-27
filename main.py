@@ -162,11 +162,11 @@ elif selected_page == "Comments":
         ("Positive comments", "Negative comments"))
     st.write(f"Here you can see the most recurent words in the {sent}!")
     if sent== "Positive comments":
-        st.image(arc_pos.jpg)
+        st.image('arc_pos'.jpg,width=500))
 #         plot_word_cloud(text_pos, "mrc.jpg", "white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
     elif sent == "Negative comments":
-        st.image(arc_pos.jpg)
+        st.image('rat_neg.jpg',width=500))
 #         plot_word_cloud(text_neg, "yat.jpg","white")
         st.set_option('deprecation.showPyplotGlobalUse', False)
 
